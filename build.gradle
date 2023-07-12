@@ -26,7 +26,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
+	runtimeOnly 'com.mysql:mysql-connecttor-j'
+
+
+
 	implementation 'org.json:json:20200518'
+
+
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
