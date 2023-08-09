@@ -7,8 +7,6 @@ public class UserDto {
 
     private String name;
     private String password;
-    private String id;
-    private String squidname;
-
-
+    private String email;
+    String choi = "최동훈";
 }
