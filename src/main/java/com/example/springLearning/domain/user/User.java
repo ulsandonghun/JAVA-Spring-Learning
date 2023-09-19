@@ -13,11 +13,16 @@ import java.util.ArrayList;
 public class User {
 
 
-        @Id @GeneratedValue
+
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "user_id")
         private Long id;
-        private String name;
 
+        private String email;
+
+        private String password;
+
+        private String squidname;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Squid squid;

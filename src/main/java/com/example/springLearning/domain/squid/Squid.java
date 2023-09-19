@@ -17,12 +17,12 @@ public class Squid {
 
     private Long id;
 
-    private String name;
+    private String Level;
+
 
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-
 
 
 }

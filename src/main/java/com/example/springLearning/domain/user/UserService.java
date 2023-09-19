@@ -12,18 +12,14 @@ public class UserService {
 
     @Autowired
     public UserService(UserRepository userRepository) {
+
         this.userRepository = userRepository;
+
     }
 
-    public void signUp(UserDto userDto) {
-        User user = new User();
-        user.setName(userDto.getName());
-
-
+    public void signup(User user) {
+        // 회원가입 로직 구현
         userRepository.save(user);
     }
 
-    public void login(UserDto userDto) {
-        // 로그인 로직을 구현
-    }
 }
