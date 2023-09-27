@@ -3,10 +3,6 @@ package com.example.springLearning.chap_03;
 import java.util.Scanner;
 
 public class Call {
-
-
-
-
     public static void main(String[] args) {
 //        Calculator calculator = new Add();
 Calculator calculator =new Sub();
