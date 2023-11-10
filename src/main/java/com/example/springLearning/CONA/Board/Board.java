@@ -1,29 +1,27 @@
 package com.example.springLearning.CONA.Board;
 
-
+import com.example.springLearning.CONA.User.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
-import java.sql.Timestamp;
 
 @Entity
-@Getter
-@Setter
 public class Board {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
-    private String writer;
+
     private String content;
 
-    @CreatedDate
-    private Timestamp regDate;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    private int cnt;
+    // 생성자, getter, setter 등 생략
 }
