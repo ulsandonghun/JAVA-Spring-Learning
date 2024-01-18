@@ -1,9 +1,9 @@
 package com.example.springLearning.repository;
 
-import com.example.springLearning.entity.User;
-import java.util.Optional;
+import com.example.springLearning.domain.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User,Long> {
-    Optional<User> findOneWithAuthoritiesByUsername(String username);
+public interface UserRepository extends JpaRepository<UserEntity, Integer> {
+    Boolean existsByUsername(String username);
+
 }
