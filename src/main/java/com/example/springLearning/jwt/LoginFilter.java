@@ -31,7 +31,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         UsernamePasswordAuthenticationToken authenticationToken
                 = new UsernamePasswordAuthenticationToken(username, password);
 
-        System.out.println(username);
+        System.out.println("현재 클라이언트가 요청한 request의 유저이름"+username);
         return authenticationManager.authenticate(authenticationToken);
     }
 
@@ -51,6 +51,8 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         String token = jwtUtil.createJwt(username, role, 60*60*10L);
 
         response.addHeader("Authorization", "Bearer " + token);
+
+        System.out.println("로그인 성공후 발급 토큰 token = " + token);
         System.out.println("success");
     }
 

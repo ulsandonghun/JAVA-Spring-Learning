@@ -33,6 +33,7 @@ public class JWTUtil {
     }
 
     public String createJwt(String username, String role, Long expiredMs) {
+        System.out.println("만료기한 설정 :"+(System.currentTimeMillis() + expiredMs));
 
         return Jwts.builder()
                 .claim("username", username)

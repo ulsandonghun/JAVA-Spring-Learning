@@ -1,5 +1,6 @@
 package com.example.springLearning.SecurityConfig;
 
+import com.example.springLearning.jwt.JWTFilter;
 import com.example.springLearning.jwt.JWTUtil;
 import com.example.springLearning.jwt.LoginFilter;
 import lombok.RequiredArgsConstructor;
@@ -61,6 +62,10 @@ public class SecurityConfig {
         //UsernamePasswordAuthenticationFilter 이 필터 안에 커스텀한 로그인 필터를 넣을것이라서, addFilterAt 사용
         http
                 .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration),jwtUtil), UsernamePasswordAuthenticationFilter.class);
+
+        //JWTFilter 등록
+        http
+                .addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
 
 
         //세션 설정
