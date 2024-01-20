@@ -56,6 +56,9 @@ public class JWTFilter extends OncePerRequestFilter {
         userEntity.setPassword("temppassword");
         userEntity.setRole(role);
 
+        //현재 토큰 발행 시간 출력
+        System.out.println("토큰 발행시간 = " + jwtUtil.getIssuedTime(token));
+
         //UserDetails에 회원 정보 객체 담기
         CustomUserDetails customUserDetails = new CustomUserDetails(userEntity);
 
