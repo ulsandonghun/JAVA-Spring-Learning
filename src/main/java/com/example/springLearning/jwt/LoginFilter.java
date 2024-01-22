@@ -50,7 +50,8 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         //토큰생성시, 지속시간 36000 MS = 36초로 만기 생성
         //토큰 생성 단위는 밀리세컨드임.
-        String token = jwtUtil.createJwt(username, role, 60*60*10L);
+        //수정 지속시간 : 360000MS = 360초로 수정
+        String token = jwtUtil.createJwt(username, role, 60*60*100L);
 
         response.addHeader("Authorization", "Bearer " + token);
 
