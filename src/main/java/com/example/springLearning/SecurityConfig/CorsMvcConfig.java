@@ -5,6 +5,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
+//컨트롤러에서 cors 허용
 public class CorsMvcConfig implements WebMvcConfigurer {
 
     @Override
@@ -15,4 +16,3 @@ public class CorsMvcConfig implements WebMvcConfigurer {
     }
 
 }
-git

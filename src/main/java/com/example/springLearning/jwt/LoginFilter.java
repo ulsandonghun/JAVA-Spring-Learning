@@ -55,6 +55,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         response.addHeader("Authorization", "Bearer " + token);
 
+
 //        System.out.println("로그인 성공후 발급 토큰 token = " + token);
 //        System.out.println("success");
     }
