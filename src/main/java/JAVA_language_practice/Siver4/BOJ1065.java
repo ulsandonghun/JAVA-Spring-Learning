@@ -6,17 +6,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class BOJ1065 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String str = br.readLine();
-        int num = Integer.parseInt(str);
-        int cnt=0;
 
-        for (int i = 1; i <= num; i++) {
-            cnt += judge(i);
-        }
+        int num = Integer.parseInt(br.readLine());
+
+        int cnt = IntStream.rangeClosed(1, num)
+//                .map(BOJ1065::judge) 함수참조또는 람다표현식 이용 아래의 코드와 같은역할
+                .map(i->judge(i))
+                .sum();
+
 
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
 
@@ -35,16 +37,12 @@ public class BOJ1065 {
         int[] array = Arrays.stream(s.split(""))
                 .mapToInt(Integer::parseInt)
                 .toArray();
-        int differ = array[0] - array[1];
-        for (int i = 0; i < array.length-1; i++) {
-            int differ2 = array[i] - array[i + 1];
-            if (differ != differ2) {
-                //차이가 다르면 한수 아님
-                return 0;
-            }
 
-        }
-        return 1;
+        int differ = array[0] - array[1];
+
+       return IntStream.range(0, array.length - 1)
+                .map(i -> array[i] - array[i + 1])
+                .allMatch(i -> i == differ) ? 1 : 0;
 
     }
 
