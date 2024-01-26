@@ -23,7 +23,8 @@ public class BOJ9012 {
 
         for (int i = 0; i < num; i++) {
             char[] charArray = br.readLine().toCharArray();
-            bw.write(judge(charArray)+"\n");
+            String result = isVPS(charArray) ? "YES" : "NO";
+            bw.write(result+"\n");
 
             stack.clear();
         }
@@ -33,7 +34,7 @@ public class BOJ9012 {
     }
 
     //스택에 직접 넣고 빼는 과정을 수행하고, VPS가 아니면 경고를 반환하는 기능
-    public static boolean pushAndAlrert(char ch) {
+    public static boolean alertStack(char ch) {
         if (ch == '(') {
             stack.push(ch);
             return true;
@@ -47,17 +48,13 @@ public class BOJ9012 {
 
     }
     //한줄입력마다 NO Yes를 출력하는 함수
-    public static String judge(char[] chArr) {
+    public static boolean isVPS(char[] chArr) {
         for (int i = 0; i < chArr.length; i++) {
             char ch = chArr[i];
-            if (!pushAndAlrert(ch)) {
-                return "NO";
+            if (!alertStack(ch)) {
+                return false;
             }
         }
-        if (stack.empty()) {
-            return "YES";
-        }else {
-            return "NO";
-        }
+        return stack.empty();
     }
 }
