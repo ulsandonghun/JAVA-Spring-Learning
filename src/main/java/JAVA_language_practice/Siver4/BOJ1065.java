@@ -43,7 +43,6 @@ public class BOJ1065 {
        return IntStream.range(0, array.length - 1)
                 .map(i -> array[i] - array[i + 1])
                 .allMatch(i -> i == differ) ? 1 : 0;
-
     }
 
 }
