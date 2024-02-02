@@ -5,61 +5,71 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.UncheckedIOException;
 import java.util.Stack;
+import java.util.stream.IntStream;
 
 public class BOJ10828 {
 
     private static Stack<String> stack = new Stack<>();
-   private static BufferedReader br
-           = new BufferedReader(new InputStreamReader(System.in));
-    private static BufferedWriter bw
-            = new BufferedWriter(new OutputStreamWriter(System.out));
+    private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
     public static void main(String[] args) throws IOException {
-
         int n = Integer.parseInt(br.readLine());
-        for (int i = 0; i < n; i++) {
-            String[] starr = br.readLine().split(" ");
-            checkAndOperate(starr);
-        }
+
+        IntStream.range(0, n)
+                .mapToObj(i -> {
+                    try {
+                        return br.readLine().split(" ");
+                    } catch (IOException e) {
+                        throw new UncheckedIOException(e);
+                    }
+                })
+                .forEach(BOJ10828::checkAndOperate);
+
         bw.flush();
         bw.close();
-
     }
 
-    public static void checkAndOperate(String[] strarr) throws IOException {
+    public static void checkAndOperate(String[] strarr) {
         String order = strarr[0];
         switch (order) {
             case "push":
                 stack.push(strarr[1]);
                 break;
             case "pop":
-                if(isEmpty())
-                    break;
-                bw.write(stack.pop()+"\n");
+                if (!stack.isEmpty()) {
+                    try {
+                        bw.write(stack.pop() + "\n");
+                    } catch (IOException e) {
+                        throw new UncheckedIOException(e);
+                    }
+                } else {
+                    write("-1");
+                }
                 break;
             case "size":
-                bw.write(stack.size()+"\n");
+                write(String.valueOf(stack.size()));
                 break;
             case "empty":
-                bw.write((stack.empty()?1:0) + "\n");
+                write(stack.empty() ? "1" : "0");
                 break;
             case "top":
-                if(isEmpty())
-                    break;
-                bw.write(stack.peek() + "\n");
+                if (!stack.isEmpty()) {
+                    write(stack.peek());
+                } else {
+                    write("-1");
+                }
                 break;
         }
-
     }
 
-    public static boolean isEmpty() throws IOException {
-        if(stack.isEmpty()){
-            bw.write("-1" + "\n");
-            return true;
+    private static void write(String value) {
+        try {
+            bw.write(value + "\n");
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
         }
-        return false;
     }
 }
